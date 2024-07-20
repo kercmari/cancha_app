@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <div>
+        {% for message in messages%}
+        <div>{{message}}</div>
+        {%endfor%}
+        <h1>Login</h1>
+        <form method="POST">
+            {%csrf_token%}
+            {{login_form}}
+            <br />
+            <button type="submit">Login</button>
+            No tienes cuentas,<a href="/registro">Registrarme</a>
+        </form>
+    </div>
+</body>
+
+</html>

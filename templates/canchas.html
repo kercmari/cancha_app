@@ -1,0 +1,12 @@
+<div>
+    <h3>Canchas: </h3>
+    <ul>
+        {% for id_cancha,nombreCancha in listado %}
+        <li>
+            <a href="/getInfoCanchaById/{{id_cancha}}">
+                {{nombreCancha}}
+            </a>
+        </li>
+        {% endfor%}
+    </ul>
+</div>

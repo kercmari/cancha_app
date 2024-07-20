@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>
+        Canchas Rserva
+    </title>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    {% for message in messages%}
+    <div>***{{message}}***</div>
+    {%endfor%}
+
+    <h3>Cancha:{{cancha.nombre}} </h3>
+    <p>Descripcion: {{cancha.descripcion}}</p>
+    <div>
+
+        {% if horarios|length > 0 %}
+        {% for horario in horarios %}
+
+        <ul>
+
+            <form method="post" action="/reservar/{{horario.id}}">
+                {% csrf_token %}
+                <li>
+                    Hora Inicio: {{horario.hora_inicio|date:'Y-m-d, h:i:s'}} - Hora Fin:
+                    {{horario.hora_fin|date:'Y-m-d, h:i:s'}}
+                    <button type="submit">Reservar</button>
+                </li>
+            </form>
+        </ul>
+        {% endfor%}
+
+        {% else %}
+        <p>No hay horarios disponibles.</p>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
