@@ -27,8 +27,8 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('getInfoCanchaById/<int:id_cancha>',views.getInfoCanchaById,name='getInfoCanchaById'),
-    path('getPersonaById/<int:id_persona>',views.getPersonaById,name='getPersonaById'),
+    path('getInfoCanchaById/<int:id_cancha>',views.get_info_cancha_by_id,name='getInfoCanchaById'),
+    path('getPersonaById/<int:id_persona>',views.get_persona_by_id,name='getPersonaById'),
     path('reservar/<int:id_horario>',views.reservarCancha,name='reservar'),
     path('canchas/',views.getListadoCanchas,name='getListadoCanchas'),
     path('registro/',views.registro_request,name='registro'),

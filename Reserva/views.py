@@ -20,13 +20,13 @@ from Reserva.serializer import (
 from rest_framework_simplejwt.tokens import RefreshToken
 # Create your views here.
 
-def getInfoCanchaById(request, id_cancha):
+def get_info_cancha_by_id(request, id_cancha):
     cancha = Cancha.objects.get(id= id_cancha)
     horarios= Horario.objects.filter(cancha=id_cancha)
   
     return render(request=request, template_name='cancha.html', context={'cancha':cancha, 'horarios': horarios})
 
-def getPersonaById(request, id_persona):
+def get_persona_by_id(id_persona):
     persona = Persona.objects.get(id= id_persona)
     resultado_layout = f"<h3>Nombre: {persona.nombre} Apellido: {persona.apellido} Telefono: {persona.telefono}</h3>"
     return HttpResponse(resultado_layout)
@@ -93,7 +93,7 @@ def reservarCancha(request, id_horario):
 
 #Refactorizado para soporte REST
 @api_view(['GET'])
-def get_info_cancha_by_id(request, id_cancha):
+def get_info_cancha_by_id(id_cancha):
     cancha = get_object_or_404(Cancha, id=id_cancha)
     horarios = Horario.objects.filter(cancha=id_cancha)
 
@@ -114,13 +114,13 @@ def get_info_cancha_by_id(request, id_cancha):
         'reserva_persona': reserva_persona
     })
 @api_view(['GET'])
-def get_persona_by_id(request, id_persona):
+def get_persona_by_id(id_persona):
     persona = get_object_or_404(Persona, id=id_persona)
     serializer = PersonaSerializer(persona)
     return Response(serializer.data)
 
 @api_view(['GET'])
-def get_listado_canchas(request):
+def get_listado_canchas():
     canchas = Cancha.objects.all()
     serializer = CanchaSerializer(canchas, many=True)
     return Response(serializer.data)
